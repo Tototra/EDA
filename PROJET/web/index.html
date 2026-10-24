@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CinéSwipe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <button id="logo" class="logo">Ciné<span>Swipe</span></button>
+    <nav>
+      <button id="tab-discover" class="tab" disabled>Découvrir</button>
+      <button id="tab-foryou" class="tab" disabled>Pour toi</button>
+      <button id="tab-personas" class="tab">Personas</button>
+    </nav>
+    <div id="goal" class="goal" hidden>
+      <div id="progress" class="progress"></div>
+      <span id="hint"></span>
+    </div>
+  </header>
+
+  <section id="intro" class="screen intro">
+    <div id="wall" class="wall"></div>
+    <h1>Trouve tes univers de cinéma</h1>
+    <p>Dis-nous ce qui te tente, on s'occupe du reste.</p>
+    <button id="start" class="main">Commencer</button>
+  </section>
+
+  <section id="discover" class="screen" hidden>
+    <h1 class="page-title">Qu'est-ce qui te tente ?</h1>
+    <p class="muted">Réponds seulement aux univers qui t'inspirent.</p>
+    <div id="rows"></div>
+    <div class="bar">
+      <button id="next" class="main">Suivant</button>
+    </div>
+  </section>
+
+  <section id="foryou" class="screen" hidden>
+    <div id="hero" class="hero">
+      <div>
+        <p class="eyebrow">Ton univers n°1</p>
+        <h1 id="hero-name"></h1>
+        <p id="hero-films" class="muted"></p>
+        <button id="refine" class="main">Affiner mes goûts</button>
+      </div>
+      <div id="hero-posters" class="hero-posters"></div>
+    </div>
+    <div id="picks"></div>
+  </section>
+
+  <section id="personas" class="screen" hidden>
+    <div id="persona-list">
+      <h1 class="page-title">Personas</h1>
+      <p class="muted">Choisis un spectateur type et regarde comment CinéSwipe trouve ses univers.</p>
+      <div id="persona-rows"></div>
+    </div>
+    <div id="persona-game" hidden>
+      <p class="eyebrow">La partie de</p>
+      <h1 id="persona-name" class="page-title"></h1>
+      <button id="persona-back" class="pill">Changer de persona</button>
+      <div id="persona-rounds"></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
