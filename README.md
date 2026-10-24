@@ -15,11 +15,11 @@ Télécharger MovieLens 1M (https://grouplens.org/datasets/movielens/1m/) et le 
 Toutes les commandes se lancent depuis la racine du dépôt.
 
 ```bash
-python3 sources/extraire.py          # entraîne BinaPs et écrit data/motifs.json (41 univers, environ 5 s)
-python3 sources/evaluation.py        # écrit resultats/resultats.md et resultats/f1_bruit.png (environ 10 s)
-python3 sources/hyperparametres.py   # écrit resultats/hyperparametres.md (environ 2 min)
-export TMDB_API_KEY="ta_clé"         # facultatif : affiches des films (clé gratuite sur themoviedb.org)
-python3 sources/server.py            # lance CinéSwipe sur http://127.0.0.1:8000
+python3 src/extraire.py          # entraîne BinaPs et écrit data/motifs.json (41 univers, environ 5 s)
+python3 src/evaluation.py        # écrit resultats/resultats.md et resultats/f1_bruit.png (environ 10 s)
+python3 src/hyperparametres.py   # écrit resultats/hyperparametres.md (environ 2 min)
+export TMDB_API_KEY="ta_clé"     # facultatif : affiches des films (clé gratuite sur themoviedb.org)
+python3 src/server.py            # lance CinéSwipe sur http://127.0.0.1:8000
 ```
 
 Sans clé TMDB, l'appli fonctionne : le titre du film remplace l'affiche.
@@ -36,14 +36,14 @@ Sans clé TMDB, l'appli fonctionne : le titre du film remplace l'affiche.
 ## Organisation du dépôt
 
 ```
-requirements.txt     dépendances Python
-sources/             code Python
-web/                 interface CinéSwipe (HTML, CSS, JavaScript)
-data/                motifs.json (univers extraits), affiches.json (cache des affiches) ; ml-1m/ à télécharger
-resultats/           sorties de evaluation.py et hyperparametres.py
+requirements.txt   dépendances Python
+src/               code Python
+web/               interface CinéSwipe (HTML, CSS, JavaScript)
+data/              motifs.json (univers extraits), affiches.json (cache des affiches) ; ml-1m/ à télécharger
+resultats/         sorties de evaluation.py et hyperparametres.py
 ```
 
-| fichier de `sources/` | rôle |
+| fichier de `src/` | rôle |
 |---|---|
 | `donnees.py` | MovieLens → matrice binaire utilisateurs × films aimés (note ≥ 4, films aimés par ≥ 5 % des utilisateurs) ; lecture de `motifs.json` ; nom des univers |
 | `binaps.py` | BinaPs en NumPy et optimiseur Adam |
