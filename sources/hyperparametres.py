@@ -7,7 +7,7 @@ from donnees import load
 from boucle import recommend, play, found_round
 from mesures import jaccard, f1, coverage
 
-OUTPUT = Path(__file__).parent / "resultats"
+OUTPUT = Path(__file__).parent.parent / "resultats"
 OUTPUT.mkdir(exist_ok=True)
 
 BASE = {"lr": 1e-2, "epochs": 10, "batch": 64, "capacity": 1.0, "alpha": None, "thresh": 0.5}

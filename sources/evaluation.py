@@ -8,7 +8,7 @@ from boucle import recommend, play, found_round
 from mesures import jaccard, f1, coverage, auc
 from personas import PERSONAS, liked_patterns
 
-OUTPUT = Path(__file__).parent / "resultats"
+OUTPUT = Path(__file__).parent.parent / "resultats"
 OUTPUT.mkdir(exist_ok=True)
 
 lines = ["# Resultats", "", "## 1. BinaPs sur donnees synthetiques (8 motifs plantes, 3 graines, seuil 0.5)", "",

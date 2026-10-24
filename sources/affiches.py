@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 import requests
 
-CACHE = Path(__file__).parent / "affiches.json"
+CACHE = Path(__file__).parent.parent / "data" / "affiches.json"
 SEARCH_URL = "https://api.themoviedb.org/3/search/movie"
 IMAGE_URL = "https://image.tmdb.org/t/p/w185"
 

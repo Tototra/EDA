@@ -7,22 +7,21 @@ Le rapport est dans `rapport.typ` (Typst).
 ## Installation
 
 ```bash
-cd PROJET
 pip install -r requirements.txt
 ```
 
-Télécharger MovieLens 1M (https://grouplens.org/datasets/movielens/1m/) et le décompresser dans `PROJET/data/`, pour obtenir `data/ml-1m/ratings.dat`, `movies.dat` et `users.dat`. Les données ne sont pas fournies (licence GroupLens).
+Télécharger MovieLens 1M (https://grouplens.org/datasets/movielens/1m/) et le décompresser dans `data/`, pour obtenir `data/ml-1m/ratings.dat`, `movies.dat` et `users.dat`. Les données ne sont pas fournies (licence GroupLens).
 
 ## Utilisation
 
-Toutes les commandes se lancent depuis `PROJET/`.
+Toutes les commandes se lancent depuis la racine du dépôt.
 
 ```bash
-python3 extraire.py          # entraîne BinaPs et écrit motifs.json (41 univers, environ 5 s)
-python3 evaluation.py        # écrit resultats/resultats.md et resultats/f1_bruit.png (environ 10 s)
-python3 hyperparametres.py   # écrit resultats/hyperparametres.md (environ 2 min)
-export TMDB_API_KEY="ta_clé"  # facultatif : affiches des films (clé gratuite sur themoviedb.org)
-python3 server.py            # lance CinéSwipe sur http://127.0.0.1:8000
+python3 sources/extraire.py          # entraîne BinaPs et écrit data/motifs.json (41 univers, environ 5 s)
+python3 sources/evaluation.py        # écrit resultats/resultats.md et resultats/f1_bruit.png (environ 10 s)
+python3 sources/hyperparametres.py   # écrit resultats/hyperparametres.md (environ 2 min)
+export TMDB_API_KEY="ta_clé"         # facultatif : affiches des films (clé gratuite sur themoviedb.org)
+python3 sources/server.py            # lance CinéSwipe sur http://127.0.0.1:8000
 ```
 
 Sans clé TMDB, l'appli fonctionne : le titre du film remplace l'affiche.
@@ -36,23 +35,30 @@ Sans clé TMDB, l'appli fonctionne : le titre du film remplace l'affiche.
 5. **Pour toi** : dès 3 univers aimés, l'appli recommande les 3 univers de meilleur score qui ne partagent aucun film.
 6. **Personas** : l'onglet rejoue, tour par tour, la partie d'un des trois spectateurs types.
 
-## Fichiers (dossier PROJET)
+## Organisation du dépôt
 
-| fichier | rôle |
+```
+rapport.typ          rapport (Typst)
+requirements.txt     dépendances Python
+sources/             code Python
+web/                 interface CinéSwipe (HTML, CSS, JavaScript)
+data/                motifs.json (univers extraits), affiches.json (cache des affiches) ; ml-1m/ à télécharger
+resultats/           sorties de evaluation.py et hyperparametres.py
+```
+
+| fichier de `sources/` | rôle |
 |---|---|
-| `donnees.py` | MovieLens → matrice binaire utilisateurs × films aimés (note ≥ 4, films aimés par ≥ 5 % des utilisateurs) ; lecture de `motifs.json` |
+| `donnees.py` | MovieLens → matrice binaire utilisateurs × films aimés (note ≥ 4, films aimés par ≥ 5 % des utilisateurs) ; lecture de `motifs.json` ; nom des univers |
 | `binaps.py` | BinaPs en NumPy et optimiseur Adam |
-| `extraire.py` | entraîne BinaPs et sauvegarde les univers dans `motifs.json` |
+| `extraire.py` | entraîne BinaPs et sauvegarde les univers dans `data/motifs.json` |
 | `boucle.py` | boucle interactive : scores WPM, diversité, premier tour, tirage, recommandation, partie simulée |
 | `personas.py` | les trois personas (films préférés) et les univers qu'ils aiment |
 | `server.py` | serveur Flask de CinéSwipe |
-| `web/` | interface CinéSwipe (HTML, CSS, JavaScript) |
-| `affiches.py` | affiches via l'API TMDB, mises en cache dans `affiches.json` |
-| `evaluation.py` | évaluation : BinaPs sur données synthétiques, statistiques MovieLens, boucle simulée, personas, modèle de préférence tour par tour, traces d'interaction |
+| `affiches.py` | affiches via l'API TMDB, mises en cache dans `data/affiches.json` |
+| `evaluation.py` | évaluation : données synthétiques, statistiques MovieLens, boucle simulée, personas, modèle de préférence tour par tour, traces d'interaction |
 | `hyperparametres.py` | comportement de BinaPs selon ses hyperparamètres, stabilité selon la graine, seuil de popularité des films |
 | `mesures.py` | mesures communes : Jaccard, F1, couverture, AUC |
 | `common_datasets.py` | données synthétiques à motifs cachés (fourni avec les TP) |
-| `resultats/` | résultats de l'évaluation |
 
 ## Références
 

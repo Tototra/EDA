@@ -4,8 +4,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-FOLDER = Path(__file__).parent / "data" / "ml-1m"
-PATTERNS_FILE = Path(__file__).parent / "motifs.json"
+ROOT = Path(__file__).parent.parent
+FOLDER = ROOT / "data" / "ml-1m"
+PATTERNS_FILE = ROOT / "data" / "motifs.json"
 
 
 def read(name, columns):

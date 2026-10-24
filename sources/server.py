@@ -1,6 +1,6 @@
 import numpy as np
 from flask import Flask, jsonify, request
-from donnees import load, load_patterns, name
+from donnees import ROOT, load, load_patterns, name
 from affiches import posters, clean_title
 from boucle import scores, first_round, draw, recommend, play, found_round
 from personas import PERSONAS, favorites, liked_patterns
@@ -14,7 +14,7 @@ titles |= {movies.title[j] for w in PERSONAS.values() for j in favorites(w, movi
 posters(sorted(titles))
 rng = np.random.default_rng()
 state = {}
-app = Flask(__name__, static_folder="web", static_url_path="")
+app = Flask(__name__, static_folder=ROOT / "web", static_url_path="")
 
 
 def cards(F):
