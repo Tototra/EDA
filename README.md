@@ -2,8 +2,6 @@
 
 BinaPs (extraction différentiable de motifs) + score WPM appris par feedback + une interface web au style des plateformes de streaming.
 
-Le rapport est dans `rapport.typ` (Typst).
-
 ## Installation
 
 ```bash
@@ -38,7 +36,6 @@ Sans clé TMDB, l'appli fonctionne : le titre du film remplace l'affiche.
 ## Organisation du dépôt
 
 ```
-rapport.typ          rapport (Typst)
 requirements.txt     dépendances Python
 sources/             code Python
 web/                 interface CinéSwipe (HTML, CSS, JavaScript)
